@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Images</title>
+</head>
+<body>
+<table>
+    <thead>
+    <th>image</th>
+    <th>date</th>
+    <th>view button</th>
+    <th>nick-name</th>
+
+
+    </thead>
+    <tbody>
+    <tr th:each="image : ${imageWrappers}">
+        <td><img th:src="${image.imageUrl}" style="width:256px;height:256px;"/></td>
+        <td th:text="${image.image.name}"></td>
+        <td><a th:href="${image.specificImageUrl}">
+            <button>view</button>
+        </a></td>
+        <td><input  th:data-parameter1="${image.image.nickName}" type="text" th:id="${image.image.id}" name="nickName" th:value="${image.image.nickName}">
+            <button th:data-parameter1="${image.image.id}" th:onclick="patchNickname(this.getAttribute('data-parameter1'));">submit</button>
+        </td>
+    </tr>
+    </tbody>
+
+
+</table>
+
+<script>
+    function patchNickname(id){
+  var lv_nickname = document.getElementById(id).value;
+  fetch("/images/" + id + "/nickName/" + lv_nickname, {
+      method: 'put',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+  }).then((response) => {
+    return respons.json()
+  }).then((res) => {
+	if (res.status === 200) {
+      console.log("Succesfully posted!");
+	}
+  }).catch((error) => {
+	  console.log(error);
+  });
+};
+
+
+
+
+</script>
+</body>
+</html>
