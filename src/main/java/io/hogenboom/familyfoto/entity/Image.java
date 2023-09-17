@@ -1,19 +1,47 @@
 package io.hogenboom.familyfoto.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = " image")
+@Table(name = "image")
 public final class Image {
     @Id
     private UUID id;
     private String name;
     private String nickName;
+
+    private String path;
+    private int year;
+    private int month;
+    private int day;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "person_image",
+            joinColumns = { @JoinColumn(name = "image_id") },
+            inverseJoinColumns = { @JoinColumn(name = "person_id") }
+    )
+    Set<Person> persons = new HashSet<>();
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "group_image",
+            joinColumns = { @JoinColumn(name = "image_id") },
+            inverseJoinColumns = { @JoinColumn(name = "group_id") }
+    )
+    Set<Group> groups = new HashSet<>();
+
+
+    public Image(UUID id, String name, String path) {
+        this.id = id;
+        this.name = name;
+        this.path = path;
+    }
+
 
     @Override
     public String toString() {
@@ -21,6 +49,7 @@ public final class Image {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", nickName='" + nickName + '\'' +
+                ", persons=" + persons +
                 ", path='" + path + '\'' +
                 ", year=" + year +
                 ", month=" + month +
@@ -28,6 +57,13 @@ public final class Image {
                 '}';
     }
 
+    public Set<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(Set<Person> persons) {
+        this.persons = persons;
+    }
     public String getNickName() {
         return nickName;
     }
@@ -36,7 +72,6 @@ public final class Image {
         this.nickName = nickName;
     }
 
-    private String path;
 
     public UUID getId() {
         return id;
@@ -85,18 +120,8 @@ public final class Image {
     public void setDay(int day) {
         this.day = day;
     }
-
-    private int year;
-    private int month;
-    private int day;
-
     public Image() {
 
-    }
-    public Image(UUID id, String name, String path) {
-        this.id = id;
-        this.name = name;
-        this.path = path;
     }
 
     public UUID id() {
@@ -126,4 +151,7 @@ public final class Image {
         return Objects.hash(id, name, path);
     }
 
+    public Set<Group> getGroups() {
+        return groups;
+    }
 }

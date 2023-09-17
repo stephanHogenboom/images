@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h1>Edit person</h1>
+    <form action="#" th:action="@{/manage-persons/edit/{id}(id=${person.id})}" method="post" th:object="${person}">
+        <label>Name:</label>
+        <input type="text" th:field="${person.name}" /><br/>
+
+        <label>Family name:</label>
+        <input type="text" th:field="${person.familyName}" /><br/>
+
+
+        <label>Birthday (yyyy-mm-dd):</label>
+        <input type="date" th:field="${person.birthDay}"/><br/>
+
+        <label>Gender:</label>
+        <input type="radio" th:field="${person.gender}" value="Male" />Male
+        <input type="radio" th:field="${person.gender}" value="Female" />Female<br/>
+
+        <button type="submit">Edit</button>
+    </form>
+</div>
+
+</body>
+</html>

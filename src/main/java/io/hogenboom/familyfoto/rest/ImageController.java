@@ -2,7 +2,8 @@ package io.hogenboom.familyfoto.rest;
 
 import io.hogenboom.familyfoto.entity.Image;
 import io.hogenboom.familyfoto.repository.ImageRepository;
-import io.hogenboom.familyfoto.service.ImageFile.ImageFileService;
+import io.hogenboom.familyfoto.repository.PersonRepository;
+import io.hogenboom.familyfoto.service.image.file.ImageFileService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,9 @@ public class ImageController {
 
     @Autowired
     private ImageRepository imageRepository;
+
+    @Autowired
+    private PersonRepository personRepository;
     @Autowired
     ImageFileService imageFileService;
 
@@ -48,6 +52,15 @@ public class ImageController {
 
         imageRepository.save(image);
         response.setStatus(200);
+    }
+
+    @PatchMapping("/{id}/persons/{personId}")
+    public void addUser(@PathVariable("id") UUID id, @PathVariable("personId") UUID personId) {
+        var image = imageRepository.findById(id).orElseThrow();
+        var person = personRepository.findById(personId).orElseThrow();
+
+        image.getPersons().add(person);
+        imageRepository.save(image);
     }
 
 

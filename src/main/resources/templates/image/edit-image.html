@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Image</title>
+</head>
+<body>
+<h1>Edit Image</h1>
+<div>
+    <div th:object="${image}">
+        <img th:src="@{/images/{id}(id=${image.id})}" style="width:1024px;height:1024px;"/>
+    </div>
+    <form action="#" th:action="@{edit-images/{id}(id=${image.id})}" method="post" th:object="${image}">
+        <label>Name:</label>
+        <input type="text" th:field="${image.nickName}" /><br/>
+        <select id="persons" class="form-control" multiple>
+            <option th:each="person : ${persons}"
+                    th:value="${person.id}"
+                    th:text="${person.name}"
+                    th:selected="${image.personIds.contains(person.id)}">
+            </option>
+        </select>
+        <select id="groups" class="form-control" multiple>
+            <option th:each="group : ${groups}"
+                    th:value="${group.id}"
+                    th:text="${group.name}"
+                    th:selected="${image.groupIds.contains(group.id)}">
+            </option>
+        </select>
+
+        <button type="submit">Edit</button>
+    </form>
+</div>
+
+<button>back to images</button>
+</a>
+</body>
+</html>

@@ -5,8 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<img th:src="${image.imageUrl}"/>
-<a href="/view-images">
+<td><img th:src="@{/images/{id}(id=${image.id})}" style="width:1024px;height:1024px;"/></td>
 <button>back to images</button>
 </a>
 </body>

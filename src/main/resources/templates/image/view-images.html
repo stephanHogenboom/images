@@ -15,14 +15,20 @@
 
     </thead>
     <tbody>
-    <tr th:each="image : ${imageWrappers}">
-        <td><img th:src="${image.imageUrl}" style="width:256px;height:256px;"/></td>
-        <td th:text="${image.image.name}"></td>
-        <td><a th:href="${image.specificImageUrl}">
+    <tr th:each="image : ${images}">
+        <td><img th:src="@{/images/{id}(id=${image.id})}" style="width:256px;height:256px;"/></td>
+        <td th:text="${image.name}"></td>
+        <td><a th:href="@{/view-images/{id}(id=${image.id})}">
             <button>view</button>
         </a></td>
-        <td><input  th:data-parameter1="${image.image.nickName}" type="text" th:id="${image.image.id}" name="nickName" th:value="${image.image.nickName}">
-            <button th:data-parameter1="${image.image.id}" th:onclick="patchNickname(this.getAttribute('data-parameter1'));">submit</button>
+        <td><a th:href="@{/edit-images/{id}(id=${image.id})}">
+            <button>edit</button>
+        </a>
+        </td>
+        <td><input type="text" th:id="${image.id}" name="nickName" th:value="${image.nickName}">
+            <button th:data-parameter1="${image.id}" th:onclick="patchNickname(this.getAttribute('data-parameter1'));">
+                submit
+            </button>
         </td>
     </tr>
     </tbody>
@@ -49,6 +55,7 @@
 	  console.log(error);
   });
 };
+
 
 
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1"/>
+    <title>manage Persons</title>
+</head>
+<body>
+<h4>Manage Groups</h4>
+<table>
+    <thead>
+    <th>Name</th>
+    </thead>
+    <tbody>
+    <tr th:each="group : ${groups}">
+        <td th:text="${group.name}"></td>
+        <td><a th:href="@{/manage-groups/edit/{id}(id=${group.id})}"><button>edit</button></a></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/manage-groups/new"><button>add Group</button></a>
+</body>
+</html>

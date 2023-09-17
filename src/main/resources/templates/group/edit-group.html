@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h1>Edit Group</h1>
+    <form action="#" th:action="@{/manage-groups/edit/{id}(id=${group.id})}" method="post" th:object="${group}">
+        <label>Name:</label>
+        <input type="text" th:field="${group.name}" /><br/>
+
+        <button type="submit">Edit</button>
+    </form>
+</div>
+
+</body>
+</html>

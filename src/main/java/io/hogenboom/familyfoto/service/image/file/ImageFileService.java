@@ -1,4 +1,4 @@
-package io.hogenboom.familyfoto.service.ImageFile;
+package io.hogenboom.familyfoto.service.image.file;
 
 import io.hogenboom.familyfoto.entity.Image;
 import org.springframework.beans.factory.annotation.Value;

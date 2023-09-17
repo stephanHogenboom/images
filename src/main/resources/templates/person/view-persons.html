@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1"/>
+    <title>manage Persons</title>
+</head>
+<body>
+<h4>Manage persons</h4>
+<table>
+    <thead>
+    <th>Name</th>
+    <th>Family name</th>
+    <th>Birthday</th>
+    <th>Gender</th>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.familyName}"></td>
+        <td th:text="${person.birthDay}"></td>
+        <td th:text="${person.gender}"></td>
+        <td><a th:href="@{/manage-persons/edit/{id}(id=${person.id})}"><button>edit</button></a></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/manage-persons/new"><button>add person</button></a>
+</body>
+</html>
