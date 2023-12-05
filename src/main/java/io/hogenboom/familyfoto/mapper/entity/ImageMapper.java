@@ -3,9 +3,7 @@ package io.hogenboom.familyfoto.mapper.entity;
 import io.hogenboom.familyfoto.entity.Group;
 import io.hogenboom.familyfoto.entity.Image;
 import io.hogenboom.familyfoto.entity.Person;
-import io.hogenboom.familyfoto.webcontroller.group.GroupView;
 import io.hogenboom.familyfoto.webcontroller.image.ImageView;
-import io.hogenboom.familyfoto.webcontroller.person.PersonView;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -20,7 +18,7 @@ public class ImageMapper {
         view.setId(source.getId());
         view.setNickName(source.getNickName());
         view.setImagePath(Paths.get(source.getPath()));
-        view.setPersonViews(toPersonIds(source.getPersons()));
+        view.setPersonIds(toPersonIds(source.getPersons()));
         view.setGroupIds(toGroupIds(source.getGroups()));
         view.setId(source.getId());
 

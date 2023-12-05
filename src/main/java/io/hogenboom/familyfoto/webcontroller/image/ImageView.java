@@ -1,8 +1,5 @@
 package io.hogenboom.familyfoto.webcontroller.image;
 
-import io.hogenboom.familyfoto.webcontroller.group.GroupView;
-import io.hogenboom.familyfoto.webcontroller.person.PersonView;
-
 import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
@@ -43,7 +40,7 @@ public class ImageView {
         return personIds;
     }
 
-    public void setPersonViews(List<UUID> uuids) {
+    public void setPersonIds(List<UUID> uuids) {
         this.personIds = uuids;
     }
 
@@ -53,5 +50,16 @@ public class ImageView {
 
     public void setImagePath(Path imagePath) {
         this.imagePath = imagePath;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageView{" +
+                "id=" + id +
+                ", nickName='" + nickName + '\'' +
+                ", groupIds=" + groupIds +
+                ", personIds=" + personIds +
+                ", imagePath=" + imagePath +
+                '}';
     }
 }

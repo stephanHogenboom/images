@@ -38,7 +38,8 @@ public class ImageController {
         try {
             response.getOutputStream().write(Files.readAllBytes(imageFile));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(" could not return image %s with message %s".formatted(id, e.getMessage()));
+            e.printStackTrace();
             response.setStatus(500);
         }
     }

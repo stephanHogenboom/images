@@ -10,17 +10,17 @@
     <div th:object="${image}">
         <img th:src="@{/images/{id}(id=${image.id})}" style="width:1024px;height:1024px;"/>
     </div>
-    <form action="#" th:action="@{edit-images/{id}(id=${image.id})}" method="post" th:object="${image}">
+    <form action="#" th:action="@{/edit-images/{id}(id=${image.id})}" method="post" th:object="${image}">
         <label>Name:</label>
         <input type="text" th:field="${image.nickName}" /><br/>
-        <select id="persons" class="form-control" multiple>
+        <select id="persons" class="form-control" th:field="${image.personIds}" multiple>
             <option th:each="person : ${persons}"
                     th:value="${person.id}"
                     th:text="${person.name}"
                     th:selected="${image.personIds.contains(person.id)}">
             </option>
         </select>
-        <select id="groups" class="form-control" multiple>
+        <select id="groups" class="form-control" th:field="${image.groupIds}" multiple>
             <option th:each="group : ${groups}"
                     th:value="${group.id}"
                     th:text="${group.name}"
@@ -28,7 +28,7 @@
             </option>
         </select>
 
-        <button type="submit">Edit</button>
+        <p><input type="submit" value="Submit"/></p>
     </form>
 </div>
 

@@ -12,15 +12,4 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-//    public static void main(String[] args) {
-//        PdfReader reader = new PdfReader();
-//        reader.readPdf("C:\\Users\\StephanHogenboom\\Downloads\\2023_08_Wijziging_lening.pdf");
-//    }
-//
-//    private static void sortFiles() {
-//        var sorterService = new DateNameSortingService();
-//        sorterService.sortAllInUnsortedDirectoryAndCopyToTargetDirectory(
-//                Paths.get("C:\\Users\\StephanHogenboom\\Downloads\\unsorted"),
-//                Paths.get("C:\\Users\\StephanHogenboom\\Downloads\\sorted"));
-//    }
 }
